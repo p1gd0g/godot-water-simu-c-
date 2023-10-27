@@ -8,14 +8,16 @@ export var k = 0.015
 export var d = 0.03
 export var spread = 0.2
 
-#the spring array
-var springs = []
-var passes = 12
-
 #distance in pixel between each spring
 export var distance_between_springs = 32
 #number of springs in the scene
 export var spring_number = 6
+
+
+#the spring array
+var springs = []
+var passes = 12
+
 
 #total water body lenght
 var water_lenght = distance_between_springs * spring_number
@@ -46,7 +48,7 @@ onready var splash_particle = preload("res://Scenes/splash_particles.tscn")
 
 #initializes the spring array and all the springs
 func _ready():
-	water_border.width = border_thickness
+	#water_border.width = border_thickness
 	
 	spread = spread / 1000
 	
@@ -159,7 +161,7 @@ func new_border():
 	
 	#puts the new curve into our border, smooths it out and then update the border drawing
 	water_border.curve = curve
-	water_border.smooth(true)
+	#water_border.smooth(true)
 	water_border.update()
 	pass
 
