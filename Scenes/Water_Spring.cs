@@ -7,7 +7,7 @@ public class Water_Spring : Node2D
 
     // #the spring's current velocity
     // var velocity = 0
-    float velocity = 0;
+    public float velocity = 0;
 
     // #the force being applied to the spring
     // var force = 0
@@ -15,7 +15,7 @@ public class Water_Spring : Node2D
 
     // #the current height of the spring
     // var height = 0
-    float height = 0;
+    public float height = 0;
 
     // #the natural position of the spring
     // var target_height = 0
@@ -26,6 +26,11 @@ public class Water_Spring : Node2D
     void r_collision()
     {
         collision = GetNode<CollisionShape2D>("Area2D/CollisionShape2D");
+    }
+
+    public override void _Ready()
+    {
+        r_collision();
     }
 
     // # the index of this spring
@@ -49,7 +54,7 @@ public class Water_Spring : Node2D
     delegate void splash(int index, float speed);
 
     // func water_update(spring_constant, dampening):
-    void water_update(int spring_constant, float dampening)
+    public void water_update(float spring_constant, float dampening)
     {
         // 	## This function applies the hooke's law force to the spring!!
         // 	## This function will be called in each frame
@@ -82,7 +87,7 @@ public class Water_Spring : Node2D
     }
 
     // func initialize(x_position,id):
-    void initialize(float x_position, int id)
+    public void initialize(float x_position, int id)
     {
         // 	height = position.y
         height = Position.y;
@@ -98,7 +103,7 @@ public class Water_Spring : Node2D
     }
 
     // func set_collision_width(value):
-    void set_collision_width(float value)
+    public void set_collision_width(float value)
     {
         // 	#this function will set the collision shape size of our springs
         // 	var extents = collision.shape.get_extents()
@@ -117,7 +122,7 @@ public class Water_Spring : Node2D
 
 
     // func _on_Area2D_body_entered(body):
-    void _on_Area2D_body_entered(Node2D body)
+    void _on_Area2D_body_entered(Stone body)
     {
 
         // 	#called when a body collides with a spring
@@ -138,12 +143,12 @@ public class Water_Spring : Node2D
         // 	#if we didn't the speed would be huge, depending on your game
         // 	var speed = body.motion.y * motion_factor
 
-        var speed = (body as PhysicsTestMotionResult).Motion.y * motion_factor;
+        var speed = body.motion.y * motion_factor;
 
         // 	#emit the signal "splash" to call the splash function, at our water body script
         // 	emit_signal("splash",index,speed)
         EmitSignal(nameof(splash), index, speed);
-        // 	pass # Replace with function body.
 
+        // 	pass # Replace with function body.
     }
 }

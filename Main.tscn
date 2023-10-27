@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/Water_Body.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/scene.png" type="Texture" id=2]
-[ext_resource path="res://Main.gd" type="Script" id=3]
+[ext_resource path="res://Main.cs" type="Script" id=3]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 3 )
